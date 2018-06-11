@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import { push } from "react-router-redux";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { loadInitialProfiles, openModal } from "../../modules/profiles";
@@ -13,7 +12,10 @@ class Home extends Component {
   }
   render() {
     const { profileItems } = this.props;
+    // List will be our display of items set to null to avoid app crash
     let list = null;
+
+    // Once profileItems are initialized, work out the logic to set to lists
     if (profileItems) {
       profileItems.sort((a, b) => {
         if (a.name < b.name) {
@@ -24,18 +26,10 @@ class Home extends Component {
         }
         return 0;
       });
-      // map to display all profile cards
-      list = profileItems.map((item, index) => (
-        <Card
-          key={index}
-          user={item}
-          editProfile={() => this.props.openModal("editProfile", item)}
-          deleteProfile={() => this.props.openModal("deleteProfile", item)}
-        />
-      ));
-      // Handle search result display via search term in redux store
+
+      // Handle map to display all profile cards or search results cards
       if (this.props.searchTerm.length > 0) {
-        // create an array of indexes that matched search term
+        // Create an array of indexes that matched search term
         let searchResults = [];
         for (let item in profileItems) {
           if (
@@ -50,7 +44,6 @@ class Home extends Component {
             searchResults[item] = item;
           }
         }
-        // map the cards to display if the index matches an index in the array
         list = profileItems
           .map((item, index) => {
             if (searchResults[index]) {
@@ -68,6 +61,15 @@ class Home extends Component {
             return null;
           })
           .filter(item => item !== null);
+      } else {
+        list = profileItems.map((item, index) => (
+          <Card
+            key={index}
+            user={item}
+            editProfile={() => this.props.openModal("editProfile", item)}
+            deleteProfile={() => this.props.openModal("deleteProfile", item)}
+          />
+        ));
       }
     }
     return (
