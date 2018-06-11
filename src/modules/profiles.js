@@ -86,10 +86,12 @@ export const addProfile = userData => {
   };
 };
 
-export const editProfile = (userId, previousName) => {
+// because users don't have unique IDs, we're passing previousName,
+// which is saved before the user can edit the name, to find the user in store
+export const editProfile = (userData, previousName) => {
   return {
     type: EDIT_PROFILE,
-    payload: userId,
+    payload: userData,
     previousName: previousName
   };
 };
@@ -101,6 +103,8 @@ export const deleteProfile = targetUser => {
   };
 };
 
+// if userData is supplied, send that as the payload
+// otherwise send an empty object
 export const openModal = (modalType, userData) => {
   if (userData) {
     return {
