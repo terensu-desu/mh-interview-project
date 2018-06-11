@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import classnames from "classnames";
 import { openModal, searchChange } from "../modules/profiles";
 import Icon from "./icon";
 import LogoFull from "../assets/icons/logo-full.png";
@@ -24,7 +23,6 @@ class Nav extends Component {
   };
   render() {
     const viewSize = window.innerWidth;
-    console.log(viewSize);
     let addProfileButtonText = "";
     let logoType = LogoSmall;
     if (viewSize >= 768) {
