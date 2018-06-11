@@ -60,6 +60,7 @@ h1 {
   }
   @media (max-width: 480px) {
     width: 480px;
+    padding: 90px 10px;
   }
   .mainContent_noResults {
     min-width: 299px;
@@ -73,51 +74,5 @@ h1 {
     letter-spacing: normal;
     text-align: left;
     color: #4a4a4a;
-  }
-}
-
-
-.modalWrapper_modal {
-  position: fixed;
-  z-index: 500;
-  border-radius: 30px;
-  background-color: #f8f8f8;
-  box-shadow: 0 16px 29px 0 rgba(0, 0, 0, 0.3);
-  padding: 25px;
-  transition: all 0.3s ease-out;
-  @media (min-width: 481px) {
-    min-width: 543px;
-    left: 15%;
-    top: 10%;
-    width: 500px;
-    left: calc(50% - 250px);
-  }
-  @media (max-width: 480px) {
-    top: 3%;
-    left: 3%;
-    width: 95%;
-  }
-}
-.modalWrapper_backdrop {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modalWrapper_profile-image {
-  img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    position: absolute;
-    left: 35px;
-    top: 109px;
-    @media (max-width: 480px)  {
-      display: none;
-    }
   }
 }
