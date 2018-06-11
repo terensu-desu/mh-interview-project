@@ -6,6 +6,7 @@
   background: linear-gradient(to left, #47d3f9, #22a7f0);
   line-height: $height;
   padding: 0 40px;
+  z-index: 100;
 
   &__element {
     display: inline-block;
@@ -14,7 +15,7 @@
   }
 
   &__logo {
-    width: 188px;
+    max-width: 188px;
     height: 39px;
 
     & svg {

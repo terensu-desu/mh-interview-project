@@ -1,14 +1,19 @@
-import { initialProfilesData } from './initialProfilesData';
+import { initialProfilesData } from "./initialProfilesData";
 
-export const LOAD_PROFILES = 'profiles/LOAD_PROFILES';
-export const OPEN_MODAL = 'profiles/OPEN_MODAL';
-export const CLOSE_MODAL = 'profiles/CLOSE_MODAL';
-export const SEARCH_CHANGE = 'profiles/SEARCH_CHANGE';
+export const LOAD_PROFILES = "profiles/LOAD_PROFILES";
+export const ADD_PROFILE = "profiles/ADD_PROFILE";
+export const EDIT_PROFILE = "profiles/EDIT_PROFILE";
+export const DELETE_PROFILE = "profiles/DELETE_PROFILE";
+export const OPEN_MODAL = "profiles/OPEN_MODAL";
+export const CLOSE_MODAL = "profiles/CLOSE_MODAL";
+export const SEARCH_CHANGE = "profiles/SEARCH_CHANGE";
 
 const initialState = {
   items: [],
-  searchTerm: '',
+  targetUser: {},
+  searchTerm: "",
   isModalOpen: false,
+  modalType: ""
 };
 
 export default (state = initialState, action) => {
@@ -16,9 +21,50 @@ export default (state = initialState, action) => {
     case LOAD_PROFILES:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload
       };
-
+    case ADD_PROFILE:
+      return {
+        ...state,
+        items: state.items.concat(action.payload)
+      };
+    case EDIT_PROFILE:
+      const itemIndex = state.items
+        .map(item => item.name)
+        .indexOf(action.previousName);
+      const updatedItems = [...state.items];
+      updatedItems[itemIndex] = action.payload;
+      return {
+        ...state,
+        items: updatedItems
+      };
+    case DELETE_PROFILE:
+      const newItems = state.items.filter(
+        item => item.name !== action.payload.name
+      );
+      return {
+        ...state,
+        items: newItems
+      };
+    case OPEN_MODAL:
+      return {
+        ...state,
+        isModalOpen: true,
+        modalType: action.modalType,
+        targetUser: action.payload
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        isModalOpen: false,
+        modalType: action.modalType,
+        targetUser: action.payload
+      };
+    case SEARCH_CHANGE:
+      return {
+        ...state,
+        searchTerm: action.payload
+      };
     default:
       return state;
   }
@@ -28,8 +74,59 @@ export const loadInitialProfiles = () => {
   return dispatch => {
     dispatch({
       type: LOAD_PROFILES,
-      payload: initialProfilesData,
+      payload: initialProfilesData
     });
   };
 };
 
+export const addProfile = userData => {
+  return {
+    type: ADD_PROFILE,
+    payload: userData
+  };
+};
+
+export const editProfile = (userId, previousName) => {
+  return {
+    type: EDIT_PROFILE,
+    payload: userId,
+    previousName: previousName
+  };
+};
+
+export const deleteProfile = targetUser => {
+  return {
+    type: DELETE_PROFILE,
+    payload: targetUser
+  };
+};
+
+export const openModal = (modalType, userData) => {
+  if (userData) {
+    return {
+      type: OPEN_MODAL,
+      modalType: modalType,
+      payload: userData
+    };
+  }
+  return {
+    type: OPEN_MODAL,
+    modalType: modalType,
+    payload: {}
+  };
+};
+
+export const closeModal = () => {
+  return {
+    type: CLOSE_MODAL,
+    modalType: "",
+    payload: {}
+  };
+};
+
+export const searchChange = query => {
+  return {
+    type: SEARCH_CHANGE,
+    payload: query
+  };
+};

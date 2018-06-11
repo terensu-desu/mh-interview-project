@@ -1,0 +1,70 @@
+.button_btn {
+  min-width: 118px;
+  height: 31px;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 10px;
+  @media (max-width: 768px) {
+    min-width: 45px;
+  }
+}
+.button_btn-add {
+  color: #fff;
+  border: solid 1px #fff;
+  background-color: #22a7f0;
+  border: solid 1px #ffffff;
+}
+.button_btn-filled {
+  color: #fff;
+  background-color: #22a7f0;
+  border: solid 1px #22a7f0;
+  @media (max-width: 1320px) {
+    width: 118px;
+    height: 31px;
+    border-radius: 10px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+    width: 102px;
+    height: 30px;
+  }
+}
+.button_btn-clear {
+  color: #22a7f0;
+  background-color: #fff;
+  border: solid 1px #22a7f0;
+  @media (max-width: 1320px) {
+    width: 118px;
+    height: 31px;
+    border-radius: 10px;
+
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+    width: 102px;
+    height: 30px;
+  }
+}
+.button_btn-disabled {
+  background-color: #bfbfbf;
+  border: solid 1px #bfbfbf;
+  color: #ffffff;
+}
+.button_btn-danger {
+  color: red;
+  background-color: #fff;
+  border: solid 1px red;
+  @media (max-width: 1320px) {
+    width: 118px;
+    height: 31px;
+    border-radius: 10px;
+  }
+  @media (max-width: 480px) {
+    font-size: 14px;
+    width: 102px;
+    height: 30px;
+  }
+}
+.button_icon-add {
+  margin-right: 5px;
+}
