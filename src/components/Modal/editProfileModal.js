@@ -177,6 +177,7 @@ class EditProfileModal extends Component {
 
   // Prevents submit if form is invalid
   // Adjusts first letter of names, occupation, and city to uppercase
+  // before sending it through Redux
   handleOnSubmit = () => {
     if (!this.state.formValidity) {
       return false;
@@ -196,7 +197,6 @@ class EditProfileModal extends Component {
         updatedSocialProfiles.push(site.name);
       }
     }
-    console.log(updatedSocialProfiles);
     const userData = {
       picUrl: this.state.formData.picUrl.value,
       name: correctedNames,
@@ -327,7 +327,7 @@ class EditProfileModal extends Component {
               touched={this.state.formData.bio.touched}
               error={this.state.formData.bio.error}
               name="bio"
-              placeholder="A Short Bio"
+              placeholder="Short bio (500 characters max)"
               onChange={event => this.handleChange(event, "bio")}
               classType="inputWrapper_textareaField-bio"
             />
@@ -357,7 +357,7 @@ class EditProfileModal extends Component {
         </Aux>
       );
     }
-    return <div>{form}</div>;
+    return <Aux>{form}</Aux>;
   }
 }
 

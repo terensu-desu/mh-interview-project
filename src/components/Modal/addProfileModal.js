@@ -6,6 +6,7 @@ import checkValidity from "../../modules/formValidation";
 import handleUpperCase from "../../modules/handleUpperCase";
 import stateOptions from "../../modules/stateOptions";
 
+import Aux from "../../hoc/aux";
 import Button from "../UI/button";
 import Input from "../UI/input";
 import Textarea from "../UI/textarea";
@@ -156,6 +157,7 @@ class AddProfileModal extends Component {
 
   // Prevents submit if form is invalid
   // Adjusts first letter of names, occupation, and city to uppercase
+  // before sending it through Redux
   handleOnSubmit = () => {
     if (!this.state.formValidity) {
       return false;
@@ -233,7 +235,7 @@ class AddProfileModal extends Component {
       );
     });
     return (
-      <div>
+      <Aux>
         <ImagePreview profileImagePreview={this.state.formData.picUrl.value} />
         <div className="formWrapper_wrapper">
           <img
@@ -304,7 +306,7 @@ class AddProfileModal extends Component {
             error={this.state.formData.bio.error}
             type="text"
             name="bio"
-            placeholder="A Short Bio"
+            placeholder="Short bio (500 characters max)"
             onChange={event => this.handleChange(event, "bio")}
             classType="inputWrapper_textareaField-bio"
           />
@@ -331,7 +333,7 @@ class AddProfileModal extends Component {
             </Button>
           </div>
         </div>
-      </div>
+      </Aux>
     );
   }
 }
