@@ -8,9 +8,6 @@ import AddProfileModal from "./addProfileModal";
 import EditProfileModal from "./editProfileModal";
 import DeleteProfileModal from "./deleteProfileModal";
 
-// Will handle displaying correct modal based on redux store
-// Each action related button tells redux which modalType to use
-// Backdrop allows for closing the modal and UI purpose
 class ModalWrapper extends Component {
   render() {
     let modalContent = null;
