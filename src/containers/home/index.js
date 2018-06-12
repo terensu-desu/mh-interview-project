@@ -78,9 +78,7 @@ class Home extends Component {
         <div className="mainContent">
           <h1 className="mainContent_header">
             {!this.props.searchTerm ? "User Profiles " : "Search Results "}
-            <span>
-              ({!this.props.searchTerm ? profileItems.length : list.length})
-            </span>
+            <span>({list.length})</span>
           </h1>
           <div className="cardWrapper_container">
             {list.length > 0 ? (
